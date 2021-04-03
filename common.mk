@@ -20,7 +20,7 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-system \
-    $(LOCAL_PATH)/overlay-yaap
+    $(LOCAL_PATH)/overlay-aospa
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -85,10 +85,6 @@ PRODUCT_PACKAGES += \
     AntHalService-Soong \
     com.dsi.ant@1.0.vendor
 
-# YAAP Device Settings
-PRODUCT_PACKAGES += \
-    DeviceSettings
-
 # Atrace
 PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
@@ -144,9 +140,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl-qti \
     android.hardware.boot@1.1-impl-qti.recovery \
-    android.hardware.boot@1.1-service \
-    bootctrl.msmnile \
-    bootctrl.msmnile.recovery
+    android.hardware.boot@1.1-service
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
@@ -189,12 +183,9 @@ PRODUCT_PACKAGES += \
     init.qcom.sdio.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.qti.chg_policy.sh \
     init.qti.dcvs.sh \
     init.qti.qcv.sh \
-    init.qti.ufs.rc \
     init.recovery.qcom.rc \
     init.target.rc \
     ueventd.qcom.rc \
@@ -241,11 +232,11 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
 # Dex
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
+# PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
 
 # Doze
-PRODUCT_PACKAGES += \
-    OnePlusDoze
+# PRODUCT_PACKAGES += \
+#    OnePlusDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -258,9 +249,13 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.oneplus_msmnile \
-    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.oneplus_msmnile \
+    vendor.aospa.biometrics.fingerprint.inscreen@1.0-service \
     vendor.oneplus.fingerprint.extension@1.0.vendor \
     vendor.oneplus.hardware.display@1.0.vendor
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
+    vendor/pa/config/permissions/vendor.aospa.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/vendor.aospa.biometrics.fingerprint.inscreen.xml
 
 # For config.fs
 PRODUCT_PACKAGES += \
@@ -307,6 +302,10 @@ PRODUCT_PACKAGES += \
 # IPC router config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+
+# Kernel
+KERNEL_SD_LLVM_SUPPORT := true
+TARGET_KERNEL_VERSION := 4.14
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -373,18 +372,18 @@ PRODUCT_BOOT_JARS += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
-    vendor.qti.hardware.perf@2.2.vendor
+    android.hardware.power-service-qti
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf \
     $(LOCAL_PATH)/configs/perfconfigstore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfconfigstore.xml
 
+# Platform
+TARGET_BOARD_PLATFORM := msmnile
+
 # QMI
 PRODUCT_PACKAGES += \
     libjson \
-    libqti_vndfwk_detect \
-    libqti_vndfwk_detect.vendor
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -430,25 +429,8 @@ PRODUCT_PACKAGES += \
     RemovePackages
 
 # Telephony
-PRODUCT_PACKAGES += \
-    ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    telephony-ext \
-    TelephonyResOneplus
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
-
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msmnile
 
 # tri-state key
 PRODUCT_PACKAGES += \

@@ -48,17 +48,9 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_KERNEL_ADDITIONAL_FLAGS := AS=llvm-as AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CONFIG := gulch_defconfig
 TARGET_KERNEL_SOURCE := kernel/oneplus/sm8150
-
-# Platform
-BOARD_USES_QCOM_HARDWARE := true
-QCOM_BOARD_PLATFORMS += msmnile
-TARGET_BOARD_PLATFORM := msmnile
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno640
-TARGET_USES_QCOM_BSP := true
 
 # Properties
 TARGET_ODM_PROP += $(VENDOR_PATH)/odm.prop
@@ -138,16 +130,13 @@ TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
 # HIDL
-DEVICE_MATRIX_FILE += $(VENDOR_PATH)/compatibility_matrix.xml
+DEVICE_MATRIX_FILE += device/qcom/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(VENDOR_PATH)/manifest.xml
-ODM_MANIFEST_FILES += $(VENDOR_PATH)/manifest-qva.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(VENDOR_PATH)/oneplus_vendor_framework_compatibility_matrix.xml \
+    vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
 
-ODM_MANIFEST_SKUS += \
-    2 \
-    3
-
-ODM_MANIFEST_2_FILES := \
-    $(VENDOR_PATH)/manifest-qva.xml \
+ODM_MANIFEST_FILES := $(VENDOR_PATH)/manifest-qva.xml
 
 ODM_MANIFEST_3_FILES := \
     $(VENDOR_PATH)/manifest-qva.xml \
@@ -190,10 +179,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 TARGET_RIL_VARIANT := caf
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2020-09-01
-
-# SELinux
-include device/qcom/sepolicy_vndr/SEPolicy.mk
+VENDOR_SECURITY_PATCH := 2021-02-01
 
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/public
