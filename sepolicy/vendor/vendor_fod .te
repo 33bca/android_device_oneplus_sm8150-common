@@ -1,5 +1,5 @@
-# Allow access to the HALs
-hal_client_domain(vendor_fod, hal_fingerprint)
+# Allow binder communication with hal_fingerprint
+binder_call(vendor_fod, hal_fingerprint)
 
 # Allow binder communication with hal_display_default
 binder_call(vendor_fod, hal_display_default)
