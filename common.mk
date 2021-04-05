@@ -294,8 +294,6 @@ PRODUCT_COPY_FILES += \
 
 # IPACM
 PRODUCT_PACKAGES += \
-    ipacm \
-    IPACM_cfg.xml \
     libipanat \
     liboffloadhal
 
@@ -385,15 +383,14 @@ TARGET_BOARD_PLATFORM := msmnile
 PRODUCT_PACKAGES += \
     libjson \
 
+# QTI Components
+TARGET_COMMON_QTI_COMPONENTS := \
+    telephony
+
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.5 \
-    android.hardware.radio.config@1.2 \
-    android.hardware.radio.deprecated@1.0 \
     android.hardware.secure_element@1.0 \
     libprotobuf-cpp-full \
-    librmnetctl \
-    libxml2
 
 # Vendor libstdc++
 PRODUCT_PACKAGES += \
@@ -427,10 +424,6 @@ PRODUCT_SOONG_NAMESPACES += \
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
     RemovePackages
-
-# Telephony
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
 # tri-state key
 PRODUCT_PACKAGES += \
