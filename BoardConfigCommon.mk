@@ -79,9 +79,6 @@ BOARD_USES_QCNE := true
 # FOD
 TARGET_SURFACEFLINGER_FOD_LIB := //$(VENDOR_PATH):libfod_extension.oneplus_msmnile
 
-# Display
-TARGET_USES_ION := true
-
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
