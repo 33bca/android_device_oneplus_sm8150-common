@@ -12,8 +12,8 @@ $(call inherit-product, vendor/oneplus/sm8150-common/sm8150-common-vendor.mk)
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Project ID Quota
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+# Enable incremental FS feature
+PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \
@@ -330,10 +330,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     usb \
     wlan
 
-# RIL
-PRODUCT_PACKAGES += \
-    android.hardware.secure_element@1.0
-
 # Vendor libstdc++
 PRODUCT_PACKAGES += \
     libstdc++.vendor
@@ -380,17 +376,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
-
-# Wifi
-PRODUCT_PACKAGES += \
-    libwpa_client \
-    libwifi-hal-ctrl \
-    vendor.qti.hardware.wifi.hostapd@1.0.vendor \
-    vendor.qti.hardware.wifi.hostapd@1.1.vendor \
-    vendor.qti.hardware.wifi.hostapd@1.2.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.0.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.1.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.2.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
