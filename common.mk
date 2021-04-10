@@ -66,13 +66,16 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml \
-    frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
 
 # ANT+
 PRODUCT_PACKAGES += \
     com.dsi.ant@1.0.vendor
+
+# Gatekeeper
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.gatekeeper.disable_spu=true
 
 # Atrace
 PRODUCT_PACKAGES += \
@@ -165,23 +168,9 @@ PRODUCT_PACKAGES += \
     vendor.oem_ftm.rc \
     vendor.oem_ftm_svc_disable.rc
 
-# Display
-PRODUCT_PACKAGES += \
-    libdisplayconfig.qti \
-    libdisplayconfig.qti.vendor \
-    libqdMetaData \
-    libtinyxml \
-    libvulkan \
-    vendor.display.config@1.0 \
-    vendor.display.config@2.0 \
-    vendor.qti.hardware.display.mapper@1.0.vendor \
-    vendor.qti.hardware.display.mapper@1.1.vendor \
-    vendor.qti.hardware.display.mapper@2.0.vendor \
-    vendor.qti.hardware.display.mapper@3.0.vendor \
-
 # Doze
-# PRODUCT_PACKAGES += \
-#    OnePlusDoze
+PRODUCT_PACKAGES += \
+    ParanoidDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -278,20 +267,6 @@ PRODUCT_PACKAGES += \
     vendor.nxp.nxpese@1.0:64 \
     vendor.nxp.nxpnfc@1.0:64
 
-# OMX
-PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libavservices_minijail.vendor \
-    libavservices_minijail_vendor \
-    libc2dcolorconvert \
-    libcodec2_hidl@1.0.vendor \
-    libcodec2_vndk.vendor \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxVidcCommon \
-    libstagefrighthw
-
 # OnePlus
 PRODUCT_PACKAGES += \
     oneplus-fwk.oneplus_msmnile
@@ -310,6 +285,7 @@ PRODUCT_PACKAGES += \
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
     audio \
+    av \
     bt \
     display \
     perf \
