@@ -78,6 +78,8 @@ vendor/lib/libssrec.so
 vendor/lib/libstagefright_soft_qtiflacdec.so
 vendor/lib/libsurround_3mic_proc.so
 vendor/lib/vendor.qti.voiceprint@1.0.so
+vendor/lib/vendor.qti.hardware.audiohalext@1.0.so|4b0eeab111fc602368ca260ce1727bff3ccaf92c
+vendor/lib64/vendor.qti.hardware.audiohalext@1.0.so|b2db901f9a869eb5ded133db7040ec9ea7e67bfe
 vendor/lib64/soundfx/libasphere.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
@@ -289,6 +291,10 @@ vendor/lib64/vendor.oneplus.hardware.CameraMDMHIDL@1.0.so|9bb0994cdbf80b14148d54
 
 # Camera firmware - from OOS
 vendor/firmware/CAMERA_ICP.elf|58f704b95e6b3d8aeb6e3f98fe47cb45debd7641
+
+# Hack - from abc
+vendor/lib/libqc2vppfilter.so
+vendor/lib64/libqc2vppfilter.so
 
 # Config Store
 vendor/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service
@@ -810,6 +816,7 @@ vendor/etc/init/vendor.sensors.qti.rc|f34fc966af816b50f10ae7520b33863961a14478
 vendor/etc/init/vendor.sensors.sscrpcd.rc|df52901f1ad0fbc97d6070e28896a6be40154814
 vendor/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml|f4884c1776c9f77c24bfce853fe22627ea4b7f79
 vendor/etc/sensors/hals.conf|bf3677cbfa5ce5735662e8c259cb027969f65c87
+vendor/lib/libopf.so|1fae13dfc6124eb28dd2e4f61ad38bdf04d302c9
 vendor/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so|2cf5f6ffa2742b45c5fbeb2500aa0dd80cccb3c5
 vendor/lib64/libsensorcal.so|5fa8b19fb98579d1844617ae92ce93d0245f539c
 vendor/lib64/libsensorslog.so|f2adbcb724caf48f595c95c1b70a69d0b3f43965
@@ -821,16 +828,23 @@ vendor/lib64/libsnsdiaglog.so|45869628ea66b228fd2241c0a6f7a30b029b0e80
 vendor/lib64/libssc.so|2e077fabdbe466460e1d6d70e6b039321c4c12aa
 vendor/lib64/sensors.ssc.so|125f705584fcace09b0b1e75d42f496b5826256c
 vendor/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so|028f65c23e91b0b4674ec89c203955db312c6626
+vendor/lib64/libopf.so|e7998b4a01f9e4291f421cfad9e3aa189b790cdb
 
 # SecureMSM (GPQESE)
 vendor/bin/hw/vendor.qti.esepowermanager@1.1-service
-vendor/bin/hw/vendor.qti.secure_element@1.2-service
 vendor/etc/init/vendor.qti.esepowermanager@1.1-service.rc
-vendor/etc/init/vendor.qti.secure_element@1.2-service.rc
 vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
-vendor/lib64/android.hardware.secure_element@1.0-impl.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
+
+# nfc - from OOS
+-system_ext/app/NxpSecureElement/NxpSecureElement.apk|425c9bed5e061a27983273ebb48c63f7b570ba63
+vendor/bin/hw/android.hardware.secure_element@1.0-service|6598a81a38d95fc890c2404c4ecf6d4d7130ac12
+vendor/etc/init/android.hardware.secure_element@1.0-service.rc|2c0a6b7c5e358382930e4a58a66ee10771412806
+vendor/lib64/libp61-jcop-kit.so|d2ed9d1a7ad1f3d42aeee488ead5488ba1c32ee7
+vendor/lib64/ls_client.so|2e57e162985571c199de1a020d172298f834679e
+vendor/lib64/vendor.nxp.nxpese@1.0.so|28988266ab7534b454475341556de27f2e648140
+vendor/lib64/vendor.nxp.nxpnfc@1.0.so|2fac5d773d7976ce4bb154d2a65933e7d7172a7a
 
 # SecureMSM (SECDISP)
 vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
@@ -875,10 +889,8 @@ vendor/etc/init/vendor.qti.tftp.rc
 vendor/bin/tloc_daemon
 vendor/etc/init/tloc_daemon.rc
 
-# Thermal
+# Thermal engine - from OOS
 vendor/bin/thermal-engine
-vendor/etc/init/init_thermal-engine.rc
-vendor/etc/thermal-engine.conf
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
 

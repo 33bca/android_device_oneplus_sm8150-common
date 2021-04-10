@@ -104,6 +104,12 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
 
 ODM_MANIFEST_FILES := $(VENDOR_PATH)/manifest-qva.xml
+ODM_MANIFEST_SKUS += \
+    2 \
+    3
+
+ODM_MANIFEST_2_FILES := \
+    $(VENDOR_PATH)/manifest-qva.xml \
 
 ODM_MANIFEST_3_FILES := \
     $(VENDOR_PATH)/manifest-qva.xml \
