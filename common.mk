@@ -288,6 +288,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
     av \
     bt \
     display \
+    overlay \
     perf \
     media-legacy \
     telephony \
