@@ -9,3 +9,7 @@ allow init { op1_file op2_file }:dir mounton;
 
 # Allow init to contextmount op1_file
 allow op1_file self:filesystem associate;
+
+allow vendor_init persist_debug_prop:file read;
+
+allow vendor_init default_prop:file read;
