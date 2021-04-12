@@ -75,16 +75,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
 
-# Atrace
+# Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.atrace@1.0-service
-
-# Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio.service \
-    android.hardware.bluetooth.audio@2.0-impl \
     audio.bluetooth.default \
-    tinymix
+    android.hardware.bluetooth.audio@2.0-impl \
+    com.dsi.ant@1.0.vendor \
+    com.qualcomm.qti.bluetooth_audio@1.0.vendor \
+    libbluetooth_audio_session \
+    vendor.qti.hardware.bluetooth_audio@2.1.vendor \
+    vendor.qti.hardware.btconfigstore@1.0.vendor \
+    vendor.qti.hardware.btconfigstore@2.0.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/bluetooth_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_hearing_aid_audio_policy_configuration.xml \
@@ -100,9 +100,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl-qti \
     android.hardware.boot@1.1-impl-qti.recovery \
     android.hardware.boot@1.1-service
-
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl
 
 # Bluetooth
 PRODUCT_PACKAGES += \
