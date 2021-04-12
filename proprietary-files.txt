@@ -30,6 +30,7 @@ vendor/firmware/a640_zap.mdt|630670144702a090ffc087a1c6c2bd5bbfde236c
 
 # Audio
 vendor/lib64/hw/sound_trigger.primary.msmnile.so
+vendor/lib/hw/sound_trigger.primary.msmnile.so
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
@@ -830,14 +831,7 @@ vendor/lib64/sensors.ssc.so|125f705584fcace09b0b1e75d42f496b5826256c
 vendor/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so|028f65c23e91b0b4674ec89c203955db312c6626
 vendor/lib64/libopf.so|e7998b4a01f9e4291f421cfad9e3aa189b790cdb
 
-# SecureMSM (GPQESE)
-vendor/bin/hw/vendor.qti.esepowermanager@1.1-service
-vendor/etc/init/vendor.qti.esepowermanager@1.1-service.rc
-vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
-vendor/lib64/vendor.qti.esepowermanager@1.0.so
-vendor/lib64/vendor.qti.esepowermanager@1.1.so
-
-# nfc - from OOS
+# NFC - from OOS
 -system_ext/app/NxpSecureElement/NxpSecureElement.apk|425c9bed5e061a27983273ebb48c63f7b570ba63
 vendor/bin/hw/android.hardware.secure_element@1.0-service|6598a81a38d95fc890c2404c4ecf6d4d7130ac12
 vendor/etc/init/android.hardware.secure_element@1.0-service.rc|2c0a6b7c5e358382930e4a58a66ee10771412806
@@ -845,6 +839,14 @@ vendor/lib64/libp61-jcop-kit.so|d2ed9d1a7ad1f3d42aeee488ead5488ba1c32ee7
 vendor/lib64/ls_client.so|2e57e162985571c199de1a020d172298f834679e
 vendor/lib64/vendor.nxp.nxpese@1.0.so|28988266ab7534b454475341556de27f2e648140
 vendor/lib64/vendor.nxp.nxpnfc@1.0.so|2fac5d773d7976ce4bb154d2a65933e7d7172a7a
+
+
+# SecureMSM (GPQESE)
+vendor/bin/hw/vendor.qti.esepowermanager@1.1-service
+vendor/etc/init/vendor.qti.esepowermanager@1.1-service.rc
+vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
+vendor/lib64/vendor.qti.esepowermanager@1.0.so
+vendor/lib64/vendor.qti.esepowermanager@1.1.so
 
 # SecureMSM (SECDISP)
 vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
