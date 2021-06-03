@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -57,61 +57,108 @@ namespace vibrator {
 
 #define test_bit(bit, array)    ((array)[(bit)/8] & (1<<((bit)%8)))
 
+static const char ACTIVATE_PATH[] = "/sys/class/leds/vibrator/activate";
+static const char BRIGHTNESS_PATH[] = "/sys/class/leds/vibrator/brightness";
+static const char DURATION_PATH[] = "/sys/class/leds/vibrator/duration";
+static const char GAIN_PATH[] = "/sys/class/leds/vibrator/gain";
+static const char IGNORE_STORE_PATH[] = "/sys/class/leds/vibrator/ignore_store";
+static const char LOOP_PATH[] = "/sys/class/leds/vibrator/loop";
+static const char SEQ_PATH[] = "/sys/class/leds/vibrator/seq";
+static const char VMAX_PATH[] = "/sys/class/leds/vibrator/vmax";
+
 static const char LED_DEVICE[] = "/sys/class/leds/vibrator";
 
 static std::map<Effect, std::vector<std::pair<std::string, std::string>>> LED_EFFECTS{
     { Effect::CLICK, {
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "59" },
-        { "/sys/class/leds/vibrator/vmax", "0x0a" },
-        { "/sys/class/leds/vibrator/gain", "0x58" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x0d" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "8" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x80" },
+        { SEQ_PATH, "0x00 0x01" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
     }},
     { Effect::DOUBLE_CLICK, {
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "80" },
-        { "/sys/class/leds/vibrator/vmax", "0x1a" },
-        { "/sys/class/leds/vibrator/gain", "0x80" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x12" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "13" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x90" },
+        { SEQ_PATH, "0x00 0x01" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
         { "SLEEP", "150" },
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "75" },
-        { "/sys/class/leds/vibrator/vmax", "0x12" },
-        { "/sys/class/leds/vibrator/gain", "0x70" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x0d" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "13" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x90" },
+        { SEQ_PATH, "0x00 0x01" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
     }},
     { Effect::TICK, {
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "11" },
-        { "/sys/class/leds/vibrator/vmax", "0x09" },
-        { "/sys/class/leds/vibrator/gain", "0x80" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x03" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "6" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x30" },
+        { SEQ_PATH, "0x00 0x01" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
     }},
     { Effect::POP, {
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "11" },
-        { "/sys/class/leds/vibrator/vmax", "0x09" },
-        { "/sys/class/leds/vibrator/gain", "0x80" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x04" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "11" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x6a" },
+        { SEQ_PATH, "0x00 0x10" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
     }},
     { Effect::HEAVY_CLICK, {
-        { "/sys/class/leds/vibrator/ignore_store", "0" },
-        { "/sys/class/leds/vibrator/duration", "16" },
-        { "/sys/class/leds/vibrator/vmax", "0x09" },
-        { "/sys/class/leds/vibrator/gain", "0x80" },
-        { "/sys/class/leds/vibrator/seq", "0x00 0x05" },
-        { "/sys/class/leds/vibrator/loop", "0x00 0x00" },
-        { "/sys/class/leds/vibrator/brightness", "1" },
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "30" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x96" },
+        { SEQ_PATH, "0x00 0x12" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
+    }}
+};
+
+using vibrator_constant_t = std::pair<int, std::vector<std::pair<std::string, std::string>>>;
+static std::vector<vibrator_constant_t> VIBRATOR_CONSTANTS{
+    { 80, {
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "AUTO" },
+        { SEQ_PATH, "0x00 0x01" },
+        { GAIN_PATH, "AUTO" },
+        { VMAX_PATH, "0x1f" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
+    }},
+    { 90, {
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "AUTO" },
+        { SEQ_PATH, "0x00 0x02" },
+        { GAIN_PATH, "AUTO" },
+        { VMAX_PATH, "0x1f" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
+    }},
+    { 100, {
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "AUTO" },
+        { SEQ_PATH, "0x00 0x03" },
+        { GAIN_PATH, "AUTO" },
+        { VMAX_PATH, "0x1f" },
+        { LOOP_PATH, "0x00 0x00" },
+        { BRIGHTNESS_PATH, "1" },
+    }},
+    {INT32_MAX, {
+        { IGNORE_STORE_PATH, "0" },
+        { DURATION_PATH, "AUTO" },
+        { VMAX_PATH, "0x1f" },
+        { GAIN_PATH, "0x80" },
+        { ACTIVATE_PATH, "1" },
     }}
 };
 
@@ -394,25 +441,29 @@ int LedVibratorDevice::write_value(const char *file, const char *value) {
 }
 
 int LedVibratorDevice::on(int32_t timeoutMs) {
-    char file[PATH_MAX];
-    char value[32];
-    int ret;
+    int ret = -1;
 
-    snprintf(file, sizeof(file), "%s/%s", LED_DEVICE, "state");
-    ret = write_value(file, "1");
-    if (ret < 0)
-       goto error;
+    auto it = std::find_if(
+        VIBRATOR_CONSTANTS.begin(), VIBRATOR_CONSTANTS.end(),
+        [&timeoutMs](const vibrator_constant_t& v) { return v.first >= timeoutMs; });
+    if (it == VIBRATOR_CONSTANTS.end())
+        goto error;
 
-    snprintf(file, sizeof(file), "%s/%s", LED_DEVICE, "duration");
-    snprintf(value, sizeof(value), "%u\n", timeoutMs);
-    ret = write_value(file, value);
-    if (ret < 0)
-       goto error;
-
-    snprintf(file, sizeof(file), "%s/%s", LED_DEVICE, "activate");
-    ret = write_value(file, "1");
-    if (ret < 0)
-       goto error;
+    for (const auto &[path, value] : it->second) {
+        if (path == DURATION_PATH && value == "AUTO") {
+            ret = write_value(path.c_str(), std::to_string(timeoutMs).c_str());
+        } else if (path == GAIN_PATH && value == "AUTO") {
+            int index = it - VIBRATOR_CONSTANTS.begin();
+            int gain = std::min(64 + (2 * timeoutMs) - (18 * (index)), 240);
+            char buf[11];
+            snprintf(buf, sizeof(buf), "0x%x", gain);
+            ret = write_value(path.c_str(), buf);
+        } else {
+            ret = write_value(path.c_str(), value.c_str());
+        }
+        if (ret < 0)
+            goto error;
+    }
 
     return 0;
 
@@ -423,11 +474,9 @@ error:
 
 int LedVibratorDevice::off()
 {
-    char file[PATH_MAX];
     int ret;
 
-    snprintf(file, sizeof(file), "%s/%s", LED_DEVICE, "activate");
-    ret = write_value(file, "0");
+    ret = write_value(ACTIVATE_PATH, "0");
     return ret;
 }
 
@@ -508,13 +557,8 @@ ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength es, const std
                 }
             }
 
-            // Restore gain from persist prop
-            char gain[PROPERTY_VALUE_MAX]{};
-            property_get("persist.vendor.vib.gain", gain, "0x55");
-            ledVib.write_value("/sys/class/leds/vibrator/gain", gain);
-
             // Return magic value for play length so that we won't end up calling on() / off()
-            playLengthMs = 150;
+            playLengthMs = effect == Effect::DOUBLE_CLICK ? 250 : 150;
         } else {
             return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
         }
@@ -631,4 +675,3 @@ ndk::ScopedAStatus Vibrator::alwaysOnDisable(int32_t id __unused) {
 }  // namespace hardware
 }  // namespace android
 }  // namespace aidl
-
