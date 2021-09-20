@@ -79,4 +79,8 @@
     <!-- OnePlus uses a proprietary vibrator hal to utilize the new powerful motor since the
          OnePlus 7 Pro. -->
     <bool name="config_hasOnePlusHapticMotor">true</bool>
+
+    <!-- If device supports pickup/lift gesture -->
+    <bool name="config_dozePulsePickup">true</bool>
+
 </resources>
