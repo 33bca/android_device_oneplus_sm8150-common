@@ -340,6 +340,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service.oneplus_msmnile
 
+# VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 30
+
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
