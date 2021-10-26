@@ -13,7 +13,7 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "AOSPAOnePlus8SeriesFrameworks",
+    name: "OnePlusSM8150SystemUI",
     sdk_version: "current",
     vendor: true,
 }
