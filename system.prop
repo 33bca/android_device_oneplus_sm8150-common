@@ -46,10 +46,6 @@ vendor.mm.enable.qcom_parser=16711679
 # Netflix
 ro.netflix.bsp_rev=Q855-16947-1
 
-# OnePlus
-ro.vendor.product.manufacturer.db=OP_PHONE
-ro.vendor.product.device.db=OP_DEVICE
-
 # RCS
 persist.rcs.supported=1
 
