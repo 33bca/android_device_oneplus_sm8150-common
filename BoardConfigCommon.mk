@@ -98,6 +98,9 @@ DEVICE_MATRIX_FILE += device/qcom/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(VENDOR_PATH)/manifest.xml
 ODM_MANIFEST_FILES += $(VENDOR_PATH)/manifest-qva.xml
 
+# Graphics
+TARGET_USES_VULKAN := true
+
 # Init
 TARGET_INIT_VENDOR_LIB := //$(VENDOR_PATH):libinit_oneplus-sm8150
 TARGET_RECOVERY_DEVICE_MODULES := libinit_oneplus-sm8150
