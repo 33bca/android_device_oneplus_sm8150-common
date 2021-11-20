@@ -211,10 +211,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DisplayMode
 
-# Doze
-PRODUCT_PACKAGES += \
-    ParanoidDoze
-
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sensor.pickup=oneplus.sensor.op_motion_detect
 
